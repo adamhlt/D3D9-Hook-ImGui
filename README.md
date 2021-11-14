@@ -1,15 +1,17 @@
 # D3D9 Hook ImGui
-D3D9 Hook with 
+D3D9 Hook with ImGui integration, works on x86 and x64.
 
-[ImGui]: https://github.com/ocornut/imgui	"ImGui"
+### Getting Started
 
-integration, works on x86 and x64.
+This project use MS Detours library for hooking and obviously DirectX 9 SDK.
 
+MS Detours library is already include in the project folder, but if you don't have DirectX SDK you can download it here.
 
+Make that **DXSDK_DIR** is declared in your environment variables.
 
+To see your environment variables :
 
-
-
+**Settings --> System --> About --> System Advanced Settings --> Environment Variables**
 
 You can hook every functions of DirectX 9 by changing the virtual function index (in Hook.cpp) :
 
