@@ -1,9 +1,9 @@
 # D3D9 Hook ImGui
-D3D9 Hook with ImGui integration, works on x86 and x64.
+D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration, works on x86 and x64.
 
 ### Getting Started
 
-This project use MS Detours library for hooking and obviously DirectX 9 SDK.
+This project use [MS Detours](https://github.com/microsoft/Detours) library for hooking and obviously DirectX 9 SDK.
 
 MS Detours library is already include in the project folder, but if you don't have DirectX SDK you can download it here.
 
@@ -11,7 +11,9 @@ Make that **DXSDK_DIR** is declared in your environment variables.
 
 To see your environment variables :
 
-**Settings --> System --> About --> System Advanced Settings --> Environment Variables**
+> **Settings --> System --> About --> System Advanced Settings --> Environment Variables**
+
+### Hooking
 
 You can hook every functions of DirectX 9 by changing the virtual function index (in Hook.cpp) :
 
@@ -21,9 +23,7 @@ Here I hook EndScene Function.
 oEndScene = (tEndScene)d3d9Device[42];
 ```
 
-
-
-This is functions index of DirectX 9
+All functions index of DirectX 9 are here.
 
 ```
     QueryInterface : 0
@@ -147,3 +147,8 @@ This is functions index of DirectX 9
     CreateQuery : 118
 ```
 
+### Example
+
+![Call Of Duty World at War (x86)](C:\Users\Adam\Desktop\Github\D3D9-Hook-ImGui\Ressources\Exemple x86.PNG)
+
+![DirectX 9 Example Program (x64)](C:\Users\Adam\Desktop\Github\D3D9-Hook-ImGui\Ressources\Exemple x64.PNG)
