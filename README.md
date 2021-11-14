@@ -149,6 +149,6 @@ All functions index of DirectX 9 are here.
 
 ### Example
 
-![Call Of Duty World at War (x86)](\Ressources\Exemple x86.PNG)
+![Call Of Duty World at War (x86)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemple%20x86.PNG)
 
-![DirectX 9 Example Program (x64)](\Ressources\Exemple x64.PNG)
+![DirectX 9 Example Program (x64)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemple%20x64.PNG)
