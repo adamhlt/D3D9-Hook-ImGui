@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3D9 ImGui Hook", "D3D9 ImGui Hook\D3D9 ImGui Hook.vcxproj", "{C39DFB12-1AD1-4190-98B0-65757A3C63D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x64.ActiveCfg = Debug|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x64.Build.0 = Debug|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Debug|x86.Build.0 = Debug|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x64.ActiveCfg = Release|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x64.Build.0 = Release|x64
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x86.ActiveCfg = Release|Win32
+		{C39DFB12-1AD1-4190-98B0-65757A3C63D8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B341399-D62F-4738-8EF8-7C273DCA00F3}
+	EndGlobalSection
+EndGlobal
