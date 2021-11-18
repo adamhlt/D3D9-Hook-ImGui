@@ -29,9 +29,9 @@ All functions index of DirectX 9 are [here](https://github.com/adamhlt/D3D9-Hook
 
 #### Call Of Duty : World at War (x86)
 
-![Call Of Duty : World at War (x86)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemple%20x86.PNG)
+![Call Of Duty : World at War (x86)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemplex86.PNG)
 
 #### DirectX 9 Example Program (x64)
 
-![DirectX 9 Example Program (x64)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemple%20x64.PNG)
+![DirectX 9 Example Program (x64)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemplex64.PNG)
 
