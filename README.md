@@ -1,4 +1,4 @@
-# D3D9 Hook ImGui
+# D3D9 Hook ImGui [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B) [![Windows](https://img.shields.io/badge/platform-Windows-0078d7.svg)](https://en.wikipedia.org/wiki/Microsoft_Windows) [![x86](https://img.shields.io/badge/arch-x86-red.svg)](https://en.wikipedia.org/wiki/X86) [![x64](https://img.shields.io/badge/arch-x64-green.svg)](https://en.wikipedia.org/wiki/X64)
 D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration, works on x86 and x64.
 
 ## Getting Started
@@ -33,5 +33,9 @@ All functions index of DirectX 9 are [here](https://github.com/adamhlt/D3D9-Hook
 
 #### DirectX 9 Example Program (x64)
 
+<<<<<<< HEAD
 ![DirectX 9 Example Program (x64)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Exemplex64.PNG)
+=======
+![DirectX 9 Example Program (x64)](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/4d8ee90984a3740ac966dbae0e9ba2cc4a2f7778/Ressources/Exemple%20x64.PNG)
+>>>>>>> main
 
