@@ -106,10 +106,14 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
 		ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
 		return true;	
-	} 
+	}
 
-	ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
-	ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
+	if(Drawing::bInit)
+	{
+		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
+		ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
+	}
+	
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
 
