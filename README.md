@@ -6,7 +6,7 @@
 
 ## :open_book: Project Overview :
 
-D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration written in C++, works on x86 and x64.
+D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration written in C++, works on x86 and x64 with all librairies and includes.
 
 This use the [**dummy device technique**](https://guidedhacking.com/threads/get-direct3d9-and-direct3d11-devices-dummy-device-method.11867/) to retrieve the virtual method table of DirectX 9.
 
@@ -34,6 +34,25 @@ To see your environment variables :
 2. Build the project in Realese (x86 or x64)
 
 Every configuration in x86 / x64 (Debug and Realese) are already configured with librairies and includes.
+
+### Other IDE using CMAKE :
+
+This **CMakeLists.txt** should compile the project.
+
+```cmake
+cmake_minimum_required(VERSION 3.0)
+project(D3D9_HOOK)
+
+set(CMAKE_CXX_STANDARD 17)
+include_directories(Detours/include $ENV{DXSDK_DIR}Include)
+link_directories(Detours/x86 $ENV{DXSDK_DIR}Lib/x86/)
+file(GLOB ImGui ImGui/*.cpp ImGui/*.h)
+
+add_library(D3D9_HOOK SHARED framework.h pch.h dllmain.cpp Hook.h Hook.cpp Drawing.h Drawing.cpp ${ImGui})
+target_link_libraries(D3D9_HOOK detours.lib d3d9.lib d3dx9.lib)
+```
+
+Tested on CLion with MSVC compiler, you can get Visual Studio Build Tools [**here**](https://visualstudio.microsoft.com/fr/downloads/?q=build+tools).
 
 ## :hook: Hooking
 
