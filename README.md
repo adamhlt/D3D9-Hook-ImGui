@@ -18,6 +18,13 @@ To see your environment variables :
 
 > **Settings --> System --> About --> System Advanced Settings --> Environment Variables**
 
+### Visual Studio :
+
+1. Open the solution file (.sln).
+2. Build the project in Realese (x86 or x64)
+
+Every configuration in x86 / x64 (Debug and Realese) are already configured with librairies and includes.
+
 ## :hook: Hooking
 
 You can hook every functions of DirectX 9 by changing the virtual function index (in Hook.cpp) :
