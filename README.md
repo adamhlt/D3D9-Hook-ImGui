@@ -4,7 +4,17 @@
 
 [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/C%2B%2B) [![Windows](https://img.shields.io/badge/platform-Windows-0078d7.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/Microsoft_Windows) [![x86](https://img.shields.io/badge/arch-x86-red.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/X86) [![x64](https://img.shields.io/badge/arch-x64-green.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/X64)
 
-D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration, works on x86 and x64.
+## :open_book: Project Overview :
+
+D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration written in C++, works on x86 and x64.
+
+This use the [**dummy device technique**](https://guidedhacking.com/threads/get-direct3d9-and-direct3d11-devices-dummy-device-method.11867/) to retrieve the virtual method table of DirectX 9.
+
+#### Used librairies :
+
+- [MS Detours](https://www.microsoft.com/en-us/research/project/detours/)
+- [DirectX SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
+- [ImGui](https://github.com/ocornut/imgui)
 
 ## :rocket: Getting Started
 
