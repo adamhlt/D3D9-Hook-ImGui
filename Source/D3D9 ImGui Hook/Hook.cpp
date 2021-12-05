@@ -14,8 +14,6 @@ void Hook::HookEndScene()
 {
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
 	{
-		OWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
-
 		oEndScene = (tEndScene)d3d9Device[42];
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
@@ -99,6 +97,12 @@ BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 	return TRUE;
 }
 
+void Hook::HookWindow()
+{
+	OWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
+}
+
+
 LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam)
 {
 	if (Drawing::bDisplay && ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
@@ -116,4 +120,3 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 	
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
-

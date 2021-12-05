@@ -11,11 +11,13 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 class Hook
 {
 public:
-	static void HookEndScene();
-	static void UnHookEndScene();
 	static IDirect3DDevice9* pDevice;
 	static tEndScene oEndScene;
 	static HWND window;
+
+	static void HookEndScene();
+	static void UnHookEndScene();
+	static void HookWindow();
 
 private:
 	static int windowHeight, windowWidth;
