@@ -31,7 +31,7 @@ To see your environment variables :
 ### Visual Studio :
 
 1. Open the solution file (.sln).
-2. Build the project in Realese (x86 or x64)
+2. Build the project in Release (x86 or x64)
 
 Every configuration in x86 / x64 (Debug and Realese) are already configured with librairies and includes.
 
