@@ -64,7 +64,7 @@ Here I hook EndScene Function.
 oEndScene = (tEndScene)d3d9Device[42];
 ```
 
-All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Ressources/Functions%20Index.md).
+All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Functions.md).
 
 ## :test_tube: Example
 
