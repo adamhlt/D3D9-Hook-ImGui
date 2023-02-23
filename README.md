@@ -22,7 +22,8 @@ This project use [MS Detours](https://github.com/microsoft/Detours) library for 
 
 MS Detours library is already include in the project folder, but if you don't have DirectX SDK you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=6812).
 
-Make that **DXSDK_DIR** is declared in your environment variables.
+> **Note** <br>
+> Make sure that **DXSDK_DIR** is declared in your environment variables.
 
 To see your environment variables :
 
