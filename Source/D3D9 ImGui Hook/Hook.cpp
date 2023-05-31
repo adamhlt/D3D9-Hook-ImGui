@@ -24,6 +24,8 @@ void Hook::HookEndScene()
 
 void Hook::UnHookEndScene()
 {
+	Drawing::unhkEndScene();
+
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourDetach(&(PVOID&)oEndScene, Drawing:: hkEndScene);
@@ -102,6 +104,10 @@ void Hook::HookWindow()
 	OWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
 }
 
+void Hook::UnHookWindow()
+{
+	(WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)OWndProc); // https://guidedhacking.com/threads/imgui-unhooking-crashes.16760/post-104566
+}
 
 LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam)
 {
