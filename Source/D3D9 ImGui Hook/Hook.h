@@ -6,7 +6,6 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 typedef HRESULT(APIENTRY* tEndScene)(LPDIRECT3DDEVICE9 pDevice);
-LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 class Hook
 {
@@ -18,6 +17,7 @@ public:
 	static void HookEndScene();
 	static void UnHookEndScene();
 	static void HookWindow();
+	static void UnHookWindow();
 
 private:
 	static int windowHeight, windowWidth;
