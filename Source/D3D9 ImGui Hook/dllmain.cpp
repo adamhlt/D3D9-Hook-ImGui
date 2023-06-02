@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Hook.h"
 
+HANDLE hThread;
+
 int Initialize(const HMODULE hModule)
 {
 	Hook::HookEndScene();
@@ -19,9 +21,20 @@ BOOL WINAPI DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpRe
 {
 	if (fdwReason == DLL_PROCESS_ATTACH)
 	{
-		const HANDLE hThread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Initialize, hinstDLL, 0, nullptr);
+		hThread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Initialize, hinstDLL, 0, nullptr);
 		if (hThread != INVALID_HANDLE_VALUE && hThread != nullptr)
 			CloseHandle(hThread);
+	}
+
+	if (fdwReason == DLL_PROCESS_DETACH)
+	{
+		Hook::UnHookEndScene();
+		if (hThread != INVALID_HANDLE_VALUE && hThread != nullptr)
+		{
+			TerminateThread(hThread, 0);
+			CloseHandle(hThread);
+		}
+		FreeLibraryAndExitThread(hinstDLL, 0);
 	}
 
 	return TRUE;

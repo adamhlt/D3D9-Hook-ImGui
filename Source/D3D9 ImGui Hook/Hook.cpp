@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "Hook.h"
+#include "Drawing.h"
 
 LPDIRECT3DDEVICE9 Hook::pDevice = nullptr;
 tEndScene Hook::oEndScene = nullptr;
+tReset Hook::oReset = nullptr;
 HWND Hook::window = nullptr;
 
 int Hook::windowHeight = 0;
@@ -15,16 +17,26 @@ void Hook::HookEndScene()
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
 	{
 		oEndScene = (tEndScene)d3d9Device[42];
+		oReset = (tReset)d3d9Device[16];
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
 		DetourAttach(&(PVOID&)oEndScene, Drawing::hkEndScene);
+		DetourAttach(&(PVOID&)oReset, hkReset);
 		DetourTransactionCommit();
 	}
 }
 
 void Hook::UnHookEndScene()
 {
-	Drawing::unhkEndScene();
+	if (Drawing::bInit)
+	{
+		UnHookWindow();
+		ImGui_ImplDX9_Shutdown();
+		ImGui_ImplWin32_Shutdown();
+		ImGui::DestroyContext();
+	}
+
+	Drawing::bInit = FALSE;
 
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
@@ -106,7 +118,7 @@ void Hook::HookWindow()
 
 void Hook::UnHookWindow()
 {
-	(WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)OWndProc); // https://guidedhacking.com/threads/imgui-unhooking-crashes.16760/post-104566
+	SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)OWndProc);
 }
 
 LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam)
@@ -123,6 +135,25 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
 		ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
 	}
+
+	if (msg == WM_CLOSE)
+	{
+		UnHookEndScene();
+		UnHookWindow();
+		ExitThread(0);
+	}
 	
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
+}
+
+HRESULT Hook::hkReset(D3DPRESENT_PARAMETERS* pPresentationParameters)
+{
+	UnHookWindow();
+	Drawing::bInit = FALSE;
+	ImGui_ImplDX9_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+	pDevice = nullptr;
+
+	return oReset(pPresentationParameters);
 }

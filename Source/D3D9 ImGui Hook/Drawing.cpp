@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Drawing.h"
+#include "Hook.h"
 
 BOOL Drawing::bInit = FALSE;
 bool Drawing::bDisplay = true;
@@ -29,13 +30,6 @@ HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 	return Hook::oEndScene(D3D9Device);
 }
 
-void Drawing::unhkEndScene()
-{
-	if (bInit)
-		Drawing::CloseImGui();
-	bInit = FALSE;
-}
-
 void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 {
 	D3DDEVICE_CREATION_PARAMETERS CP;
@@ -52,14 +46,6 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	ImGui_ImplDX9_Init(pDevice);
 
 	bInit = TRUE;
-}
-
-void Drawing::CloseImGui()
-{
-	Hook::UnHookWindow();
-	ImGui_ImplDX9_Shutdown();
-	ImGui_ImplWin32_Shutdown();
-	ImGui::DestroyContext();
 }
 
 void Drawing::DrawFilledRect(const int x, const int y, const int w, const int h, const D3DCOLOR color)
