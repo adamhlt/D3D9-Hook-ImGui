@@ -5,14 +5,14 @@ HANDLE hThread;
 
 int Initialize(const HMODULE hModule)
 {
-	Hook::HookEndScene();
+	Hook::HookDirectX();
 
 	while(!GetAsyncKeyState(VK_END))
 	{
 		Sleep(1);
 	}
 
-	Hook::UnHookEndScene();
+	Hook::UnHookDirectX();
 
 	FreeLibraryAndExitThread(hModule, 0);
 }
@@ -28,7 +28,7 @@ BOOL WINAPI DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpRe
 
 	if (fdwReason == DLL_PROCESS_DETACH)
 	{
-		Hook::UnHookEndScene();
+		Hook::UnHookDirectX();
 		if (hThread != INVALID_HANDLE_VALUE && hThread != nullptr)
 		{
 			TerminateThread(hThread, 0);

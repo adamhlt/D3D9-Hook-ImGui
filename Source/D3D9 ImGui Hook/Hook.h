@@ -14,8 +14,8 @@ public:
 	static tEndScene oEndScene;
 	static HWND window;
 
-	static void HookEndScene();
-	static void UnHookEndScene();
+	static void HookDirectX();
+	static void UnHookDirectX();
 	static void HookWindow();
 	static void UnHookWindow();
 

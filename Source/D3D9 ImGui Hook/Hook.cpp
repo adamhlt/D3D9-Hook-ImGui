@@ -12,7 +12,7 @@ int Hook::windowWidth = 0;
 void* Hook::d3d9Device[119];
 WNDPROC Hook::OWndProc = nullptr;
 
-void Hook::HookEndScene()
+void Hook::HookDirectX()
 {
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
 	{
@@ -26,7 +26,7 @@ void Hook::HookEndScene()
 	}
 }
 
-void Hook::UnHookEndScene()
+void Hook::UnHookDirectX()
 {
 	if (Drawing::bInit)
 	{
@@ -40,7 +40,8 @@ void Hook::UnHookEndScene()
 
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
-	DetourDetach(&(PVOID&)oEndScene, Drawing:: hkEndScene);
+	DetourDetach(&(PVOID&)oEndScene, Drawing::hkEndScene);
+	DetourDetach(&(PVOID&)oReset, hkReset);
 	DetourTransactionCommit();
 }
 
@@ -138,7 +139,7 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 
 	if (msg == WM_CLOSE)
 	{
-		UnHookEndScene();
+		UnHookDirectX();
 		UnHookWindow();
 		ExitThread(0);
 	}
