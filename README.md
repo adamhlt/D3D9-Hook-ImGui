@@ -87,4 +87,4 @@ All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-
 
 ## :test_tube: Example
 
-https://github.com/adamhlt/D3D9-Hook-ImGui/assets/48086737/d0df3b71-d5b8-4e67-be46-ca17dff85887
+https://github.com/adamhlt/D3D9-Hook-ImGui/assets/48086737/08665cbd-0f4c-49bc-ae98-9c9fa3bc240b
