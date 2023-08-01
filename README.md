@@ -20,6 +20,12 @@
 
 D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration written in C++, works on x86 and x64 with all librairies and includes.
 
+#### Features :
+
+- Handle window resize
+- DLL unload itself
+- Handler external unload
+
 This use the [**dummy device technique**](https://guidedhacking.com/threads/get-direct3d9-and-direct3d11-devices-dummy-device-method.11867/) to retrieve the virtual method table of DirectX 9.
 
 #### Used librairies :
@@ -81,11 +87,4 @@ All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-
 
 ## :test_tube: Example
 
-#### Call Of Duty : World at War (x86)
-
-![Exemple x86](https://user-images.githubusercontent.com/48086737/170037506-0e7fa637-b9fd-47fc-93dd-6300510a1bfd.PNG)
-
-#### DirectX 9 Example Program (x64)
-
-![Exemple x64](https://user-images.githubusercontent.com/48086737/170037541-b2bb7793-97d7-46cd-9475-786dc8d3562b.PNG)
-
+https://github.com/adamhlt/D3D9-Hook-ImGui/assets/48086737/d0df3b71-d5b8-4e67-be46-ca17dff85887
