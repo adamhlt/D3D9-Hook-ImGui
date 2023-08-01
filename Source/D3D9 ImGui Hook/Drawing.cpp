@@ -2,12 +2,17 @@
 #include "Drawing.h"
 #include "Hook.h"
 
-BOOL Drawing::bInit = FALSE;
-bool Drawing::bDisplay = true;
-bool Drawing::bSetPos = false;
-ImVec2 Drawing::vWindowPos = { 0, 0 };
-ImVec2 Drawing::vWindowSize = { 0, 0 };
+BOOL Drawing::bInit = FALSE; // Status of the initialization of ImGui.
+bool Drawing::bDisplay = true; // Status of the menu display.
+bool Drawing::bSetPos = false; // Status to update ImGui window size / position.
+ImVec2 Drawing::vWindowPos = { 0, 0 }; // Last ImGui window position.
+ImVec2 Drawing::vWindowSize = { 0, 0 }; // Last ImGui window size.
 
+/**
+    @brief : Hook of the EndScene function.
+    @param  D3D9Device : Current Direct3D9 Device Object.
+    @retval : Result of the original EndScene function.
+**/
 HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 {
 	if (!Hook::pDevice)
@@ -61,6 +66,10 @@ HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 	return Hook::oEndScene(D3D9Device);
 }
 
+/**
+    @brief : function that init ImGui for rendering.
+    @param pDevice : Current Direct3D9 Device Object given by the hooked function.
+**/
 void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 {
 	D3DDEVICE_CREATION_PARAMETERS CP;
@@ -77,10 +86,4 @@ void Drawing::InitImGui(const LPDIRECT3DDEVICE9 pDevice)
 	ImGui_ImplDX9_Init(pDevice);
 
 	bInit = TRUE;
-}
-
-void Drawing::DrawFilledRect(const int x, const int y, const int w, const int h, const D3DCOLOR color)
-{
-	const D3DRECT rect = { x,y,x + w,y + h };
-	Hook::pDevice->Clear(1, &rect, D3DCLEAR_TARGET, color, 0, 0);
 }

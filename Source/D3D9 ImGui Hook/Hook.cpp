@@ -2,17 +2,20 @@
 #include "Hook.h"
 #include "Drawing.h"
 
-LPDIRECT3DDEVICE9 Hook::pDevice = nullptr;
-tEndScene Hook::oEndScene = nullptr;
-tReset Hook::oReset = nullptr;
-HWND Hook::window = nullptr;
-HMODULE Hook::hDDLModule = nullptr;
+LPDIRECT3DDEVICE9 Hook::pDevice = nullptr; // Direct3D9 Device Object
+tEndScene Hook::oEndScene = nullptr; // Pointer of the original EndScene function
+tReset Hook::oReset = nullptr; // Pointer of the original Reset function
+HWND Hook::window = nullptr; // Window of the current process
+HMODULE Hook::hDDLModule = nullptr; // HMODULE of the DLL
 
-int Hook::windowHeight = 0;
-int Hook::windowWidth = 0;
-void* Hook::d3d9Device[119];
-WNDPROC Hook::OWndProc = nullptr;
+int Hook::windowHeight = 0; // Height of the window
+int Hook::windowWidth = 0; // Width of the window
+void* Hook::d3d9Device[119]; // Array of pointer of the DirectX functions.
+WNDPROC Hook::OWndProc = nullptr; // Pointer of the original window message handler.
 
+/**
+    @brief : Function that hook the Reset and EndScene function.
+**/
 void Hook::HookDirectX()
 {
 	if (GetD3D9Device(d3d9Device, sizeof(d3d9Device)))
@@ -27,6 +30,9 @@ void Hook::HookDirectX()
 	}
 }
 
+/**
+    @brief : Function that unhook Reset and EnScene functions, and also disable the window message handler.
+**/
 void Hook::UnHookDirectX()
 {
 	if (Drawing::bInit)
@@ -46,7 +52,9 @@ void Hook::UnHookDirectX()
 	DetourTransactionCommit();
 }
 
-
+/**
+    @brief : Function that enumerate windows.
+**/
 BOOL CALLBACK Hook::enumWind(const HWND handle, LPARAM lp)
 {
 	DWORD procID;
@@ -58,6 +66,10 @@ BOOL CALLBACK Hook::enumWind(const HWND handle, LPARAM lp)
 	return FALSE;
 }
 
+/**
+    @brief : Function that retrieve the window of the current process.
+    @retval : window of the current process.
+**/
 HWND Hook::GetProcessWindow()
 {
 	window = nullptr;
@@ -79,6 +91,12 @@ HWND Hook::GetProcessWindow()
 	return window;
 }
 
+/**
+    @brief : Function that get a Direct3D9 Device Object. (https://guidedhacking.com/threads/get-direct3d9-and-direct3d11-devices-dummy-device-method.11867/)
+    @param  pTable : Array of functions pointer.
+    @param  size   : Size of the array of pointers.
+    @retval : True if the function succeed else False.
+**/
 BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 {
 	if (!pTable)
@@ -113,16 +131,31 @@ BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 	return TRUE;
 }
 
+/**
+	@brief : Function that setup the WndProc callback function.
+**/
 void Hook::HookWindow()
 {
 	OWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
 }
 
+
+/**
+    @brief : Function that disable the WndProc callback function.
+**/
 void Hook::UnHookWindow()
 {
 	SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)OWndProc);
 }
 
+/**
+    @brief : A callback function, which you define in your application, that processes messages sent to a window. (https://learn.microsoft.com/en-us/windows/win32/api/winuser/nc-winuser-wndproc)
+    @param  hWnd : A handle to the window.
+    @param  msg : The message.
+    @param  wParam : Additional message information.
+    @param  lParam : Additional message information.
+    @retval : The return value is the result of the message processing, and depends on the message sent.
+**/
 LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam)
 {
 	if (Drawing::bDisplay && ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
@@ -147,6 +180,11 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
 
+/**
+    @brief : Hook of the function IDirect3DDevice9::Reset, to handle resize, etc..
+    @param  pPresentationParameters : parameters passed to the original function. 
+    @retval : return value of the original function.
+**/
 HRESULT Hook::hkReset(D3DPRESENT_PARAMETERS* pPresentationParameters)
 {
 	Drawing::bSetPos = true;

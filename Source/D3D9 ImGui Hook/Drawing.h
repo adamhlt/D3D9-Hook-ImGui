@@ -17,7 +17,6 @@ private:
 	static ImVec2 vWindowSize;
 
 	static void InitImGui(LPDIRECT3DDEVICE9 pDevice);
-	static void DrawFilledRect(int x, int y, int w, int h, D3DCOLOR color);
 };
 
 #endif

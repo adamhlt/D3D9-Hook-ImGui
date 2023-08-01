@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "Hook.h"
 
+/**
+    @brief : Function that init the hook of DirectX and window message handler.
+    @param hDLLModule : HMODULE of the current DLL.
+**/
 void Initialize(const HMODULE hDLLModule)
 {
 	Hook::hDDLModule = hDLLModule;
