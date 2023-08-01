@@ -4,6 +4,9 @@
 
 BOOL Drawing::bInit = FALSE;
 bool Drawing::bDisplay = true;
+bool Drawing::bSetPos = false;
+ImVec2 Drawing::vWindowPos = { 0, 0 };
+ImVec2 Drawing::vWindowSize = { 0, 0 };
 
 HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 {
@@ -28,7 +31,28 @@ HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 	ImGui::NewFrame();
 
 	if (bDisplay)
-		ImGui::ShowDemoWindow(&bDisplay);
+	{
+		ImGui::Begin("Menu Window Title", &bDisplay);
+		{
+			ImGui::SetWindowSize({ 500, 300 }, ImGuiCond_Once);
+
+			if (vWindowPos.x != 0.0f && vWindowPos.y != 0.0f && vWindowSize.x != 0.0f && vWindowSize.y != 0.0f && bSetPos)
+			{
+				ImGui::SetWindowPos(vWindowPos);
+				ImGui::SetWindowSize(vWindowSize);
+				bSetPos = false;
+			}
+
+			if (bSetPos == false)
+			{
+				vWindowPos = {ImGui::GetWindowPos().x, ImGui::GetWindowPos().y};
+				vWindowSize = {ImGui::GetWindowSize().x, ImGui::GetWindowSize().y};
+			}
+
+			ImGui::Text("Draw your menu here.");
+		}
+		ImGui::End();
+	}
 
 	ImGui::EndFrame();
 	ImGui::Render();

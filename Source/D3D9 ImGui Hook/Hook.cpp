@@ -127,18 +127,18 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 {
 	if (Drawing::bDisplay && ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
 	{
-		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
+		ImGui::GetIO().MouseDrawCursor = ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
 		return true;	
 	}
 
 	if(Drawing::bInit)
-		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
+		ImGui::GetIO().MouseDrawCursor = ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
 
 	if (msg == WM_CLOSE)
 	{
 		UnHookDirectX();
 		UnHookWindow();
-		ExitThread(0);
+		TerminateProcess(GetCurrentProcess(), 0);
 	}
 
 	if (ImGui::GetIO().WantCaptureMouse)
@@ -149,6 +149,7 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 
 HRESULT Hook::hkReset(D3DPRESENT_PARAMETERS* pPresentationParameters)
 {
+	Drawing::bSetPos = true;
 	UnHookWindow();
 	Drawing::bInit = FALSE;
 	ImGui_ImplDX9_Shutdown();
