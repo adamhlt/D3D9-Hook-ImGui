@@ -1,6 +1,14 @@
-![Project Banner](https://user-images.githubusercontent.com/48086737/170037142-33a54713-65bc-46de-8142-8907362eb048.png)
-
-# D3D9 Hook ImGui
+```
+                        ____ _____ ____  ____     __  __            __      ____          ______      _                      
+                       / __ \__  // __ \/ __ \   / / / /___  ____  / /__   /  _/___ ___  / ____/_  __(_)                     
+                      / / / //_ </ / / / /_/ /  / /_/ / __ \/ __ \/ //_/   / // __ `__ \/ / __/ / / / /                      
+                     / /_/ /__/ / /_/ /\__, /  / __  / /_/ / /_/ / ,<    _/ // / / / / / /_/ / /_/ / /                       
+                    /_____/____/_____//____/  /_/ /_/\____/\____/_/|_|  /___/_/ /_/ /_/\____/\__,_/_/                        
+                                                                                                                             
+                                                                                                                             
+                                        D3D9 Hook with ImGui integration (x86 / x64)                                                                                                               
+                                           Make DirectX 9 internal menu with ImGui     
+```
 
 [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/C%2B%2B) [![Windows](https://img.shields.io/badge/platform-Windows-0078d7.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/Microsoft_Windows) [![x86](https://img.shields.io/badge/arch-x86-red.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/X86) [![x64](https://img.shields.io/badge/arch-x64-green.svg?style=for-the-badge&logo=appveyor)](https://en.wikipedia.org/wiki/X64)
 
