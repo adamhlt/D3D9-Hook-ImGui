@@ -13,6 +13,7 @@ public:
 	static IDirect3DDevice9* pDevice;
 	static tEndScene oEndScene;
 	static HWND window;
+	static HMODULE hDDLModule;
 
 	static void HookDirectX();
 	static void UnHookDirectX();

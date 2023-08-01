@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Hook.h"
 
-void Initialize()
+void Initialize(const HMODULE hDLLModule)
 {
+	Hook::hDDLModule = hDLLModule;
 	Hook::HookDirectX();
 }
 
@@ -10,7 +11,8 @@ BOOL WINAPI DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpRe
 {
 	if (fdwReason == DLL_PROCESS_ATTACH)
 	{
-		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Initialize, nullptr, 0, nullptr);
+		DisableThreadLibraryCalls(hinstDLL);
+		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)Initialize, hinstDLL, 0, nullptr);
 	}
 
 	if (fdwReason == DLL_PROCESS_DETACH)

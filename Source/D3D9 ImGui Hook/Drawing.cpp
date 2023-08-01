@@ -16,6 +16,13 @@ HRESULT Drawing::hkEndScene(const LPDIRECT3DDEVICE9 D3D9Device)
 	if (GetAsyncKeyState(VK_INSERT) & 1)
 		bDisplay = !bDisplay;
 
+	if (GetAsyncKeyState(VK_END) & 1)
+	{
+		Hook::UnHookDirectX();
+		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)FreeLibrary, Hook::hDDLModule, 0, nullptr);
+		return Hook::oEndScene(D3D9Device);
+	}
+
 	ImGui_ImplDX9_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();

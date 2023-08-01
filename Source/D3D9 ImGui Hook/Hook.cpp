@@ -6,6 +6,7 @@ LPDIRECT3DDEVICE9 Hook::pDevice = nullptr;
 tEndScene Hook::oEndScene = nullptr;
 tReset Hook::oReset = nullptr;
 HWND Hook::window = nullptr;
+HMODULE Hook::hDDLModule = nullptr;
 
 int Hook::windowHeight = 0;
 int Hook::windowWidth = 0;
@@ -127,15 +128,11 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 	if (Drawing::bDisplay && ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
 	{
 		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
-		ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
 		return true;	
 	}
 
 	if(Drawing::bInit)
-	{
 		ImGui::GetIO().MouseDrawCursor = Drawing::bDisplay;
-		ImGui::GetIO().WantCaptureMouse = Drawing::bDisplay;
-	}
 
 	if (msg == WM_CLOSE)
 	{
@@ -143,6 +140,9 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 		UnHookWindow();
 		ExitThread(0);
 	}
+
+	if (ImGui::GetIO().WantCaptureMouse)
+		return true;
 	
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
