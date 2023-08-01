@@ -19,7 +19,6 @@ DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpReserved) {
 
     if (fdwReason == DLL_PROCESS_DETACH) {
         Hook::UnHookDirectX();
-        FreeLibrary(hinstDLL);
     }
 
     return TRUE;
