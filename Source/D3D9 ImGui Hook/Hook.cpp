@@ -175,7 +175,11 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 	}
 
 	if (ImGui::GetIO().WantCaptureMouse)
-		return true;
+	{
+		if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
+			return true;
+		return false;
+	}
 	
 	return CallWindowProc(OWndProc, hWnd, msg, wParam, lParam);
 }
