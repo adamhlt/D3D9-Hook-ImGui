@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Drawing.h"
 #include "Hook.h"
 

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Hook.h"
 
 BOOL WINAPI DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpReserved)
