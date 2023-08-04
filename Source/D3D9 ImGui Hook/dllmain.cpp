@@ -10,10 +10,7 @@ BOOL WINAPI DllMain(const HINSTANCE hinstDLL, const DWORD fdwReason, LPVOID lpRe
 	}
 
 	if (fdwReason == DLL_PROCESS_DETACH)
-	{
 		Hook::UnHookDirectX();
-		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)FreeLibrary, hinstDLL, 0, nullptr);
-	}
 
 	return TRUE;
 }
