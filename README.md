@@ -67,7 +67,7 @@ include_directories(Detours/include $ENV{DXSDK_DIR}Include)
 link_directories(Detours/x86 $ENV{DXSDK_DIR}Lib/x86/)
 file(GLOB ImGui ImGui/*.cpp ImGui/*.h)
 
-add_library(D3D9_HOOK SHARED framework.h pch.h dllmain.cpp Hook.h Hook.cpp Drawing.h Drawing.cpp ${ImGui})
+add_library(D3D9_HOOK SHARED pch.h dllmain.cpp Hook.h Hook.cpp Drawing.h Drawing.cpp ${ImGui})
 target_link_libraries(D3D9_HOOK detours.lib d3d9.lib d3dx9.lib)
 ```
 
