@@ -25,6 +25,7 @@ D3D9 Hook with [ImGui](https://github.com/ocornut/imgui) integration written in 
 - Handle window resize
 - DLL unload itself
 - Handler external unload
+- Handle fullscreen change
 
 This use the [**dummy device technique**](https://guidedhacking.com/threads/get-direct3d9-and-direct3d11-devices-dummy-device-method.11867/) to retrieve the virtual method table of DirectX 9.
 
