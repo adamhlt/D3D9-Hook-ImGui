@@ -7,7 +7,8 @@
                                                                              
                                                                            
                             D3D9 Hook with ImGui integration (x86 / x64)  
-                             Make DirectX 9 internal menu with ImGui     
+                             Make DirectX 9 internal menu with ImGui
+                                  (Resize & Fullscreen support)
 ```
 <p align="center">
     <img src="https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=for-the-badge&logo=appveyor" alt="C++">
