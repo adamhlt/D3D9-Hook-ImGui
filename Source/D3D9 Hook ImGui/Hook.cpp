@@ -108,9 +108,9 @@ BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 	IDirect3DDevice9* pDummyDevice = nullptr;
 
 	D3DPRESENT_PARAMETERS d3dpp = {};
-	d3dpp.Windowed = (GetWindowLongPtr(sd.OutputWindow, GWL_STYLE) & WS_POPUP) != 0 ? FALSE : TRUE;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = GetProcessWindow();
+	d3dpp.Windowed = (GetWindowLongPtr(d3dpp.hDeviceWindow, GWL_STYLE) & WS_POPUP) != 0 ? FALSE : TRUE;
 
 	if (HRESULT dummyDevCreated = pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, d3dpp.hDeviceWindow, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &pDummyDevice); dummyDevCreated != S_OK)
 	{

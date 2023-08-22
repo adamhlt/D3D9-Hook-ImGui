@@ -24,7 +24,7 @@
     <ProjectGuid>{c39dfb12-1ad1-4190-98b0-65757a3c63d8}</ProjectGuid>
     <RootNamespace>WAWCheat</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>D3D9 ImGui Hook</ProjectName>
+    <ProjectName>D3D9 Hook ImGui</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

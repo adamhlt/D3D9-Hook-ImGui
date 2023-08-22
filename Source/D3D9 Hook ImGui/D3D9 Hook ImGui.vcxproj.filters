@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="ImGui">
+    <Filter Include="Fichiers d%27en-tête\ImGui">
       <UniqueIdentifier>{3f1cac02-6a44-4aea-9887-87047181e960}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -24,28 +24,28 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_dx9.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_win32.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_internal.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,25 +59,25 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_dx9.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_win32.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_tables.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
