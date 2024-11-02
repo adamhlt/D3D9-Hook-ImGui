@@ -71,3 +71,7 @@ All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-
 ## :test_tube: Example
 
 https://github.com/adamhlt/D3D9-Hook-ImGui/assets/48086737/08665cbd-0f4c-49bc-ae98-9c9fa3bc240b
+
+# Credits
+
+- [**@liyunlong23**](https://github.com/liyunlong23) - Fix crash when changing resolution.
