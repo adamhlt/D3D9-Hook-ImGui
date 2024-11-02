@@ -112,10 +112,10 @@ BOOL Hook::GetD3D9Device(void** pTable, const size_t size)
 	d3dpp.hDeviceWindow = GetProcessWindow();
 	d3dpp.Windowed = (GetWindowLongPtr(d3dpp.hDeviceWindow, GWL_STYLE) & WS_POPUP) != 0 ? FALSE : TRUE;
 
-	if (HRESULT dummyDevCreated = pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, d3dpp.hDeviceWindow, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &pDummyDevice); dummyDevCreated != S_OK)
+	if (HRESULT dummyDevCreated = pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, d3dpp.hDeviceWindow, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &pDummyDevice); dummyDevCreated != S_OK)
 	{
 		d3dpp.Windowed = !d3dpp.Windowed;
-		dummyDevCreated = pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, d3dpp.hDeviceWindow, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &pDummyDevice);
+		dummyDevCreated = pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, d3dpp.hDeviceWindow, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &pDummyDevice);
 
 		if (dummyDevCreated != S_OK)
 		{
@@ -184,19 +184,15 @@ LRESULT WINAPI Hook::WndProc(const HWND hWnd, const UINT msg, const WPARAM wPara
 }
 
 /**
-    @brief : Hook of the function IDirect3DDevice9::Reset, to handle resize, etc..
-    @param  pPresentationParameters : parameters passed to the original function. 
+    @brief : Hook of the function IDirect3DDevice9::Reset, to handle resize, etc...
+	@param pDevice : Direct3D9 Device Object
+    @param pPresentationParameters : parameters passed to the original function. 
     @retval : return value of the original function.
 **/
-HRESULT Hook::hkReset(D3DPRESENT_PARAMETERS* pPresentationParameters)
+HRESULT Hook::hkReset(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS* pPresentationParameters)
 {
-	Drawing::bSetPos = true;
-	UnHookWindow();
-	Drawing::bInit = FALSE;
-	ImGui_ImplDX9_Shutdown();
-	ImGui_ImplWin32_Shutdown();
-	ImGui::DestroyContext();
-	pDevice = nullptr;
-
-	return oReset(pPresentationParameters);
+	ImGui_ImplDX9_InvalidateDeviceObjects();
+	HRESULT tmpReset = oReset(pDevice, pPresentationParameters);
+	ImGui_ImplDX9_CreateDeviceObjects();
+	return tmpReset;
 }

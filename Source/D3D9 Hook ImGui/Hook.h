@@ -5,7 +5,7 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 using tEndScene = HRESULT(APIENTRY*)(LPDIRECT3DDEVICE9 pDevice);
-using tReset = HRESULT(APIENTRY*)(D3DPRESENT_PARAMETERS* pPresentationParameters);
+using tReset = HRESULT(APIENTRY*)(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS* pPresentationParameters);
 
 class Hook
 {
@@ -31,7 +31,7 @@ private:
 	static HWND GetProcessWindow();
 	static BOOL GetD3D9Device(void** pTable, size_t size);
 	static LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	static HRESULT APIENTRY hkReset(D3DPRESENT_PARAMETERS* pPresentationParameters);
+	static HRESULT APIENTRY hkReset(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS* pPresentationParameters);
 };
 
 #endif
