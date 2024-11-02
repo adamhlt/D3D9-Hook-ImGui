@@ -56,25 +56,6 @@ To see your environment variables :
 
 Every configuration in x86 / x64 (Debug and Realese) are already configured with librairies and includes.
 
-### Other IDE using CMAKE :
-
-This **CMakeLists.txt** should compile the project.
-
-```cmake
-cmake_minimum_required(VERSION 3.0)
-project(D3D9_HOOK)
-
-set(CMAKE_CXX_STANDARD 17)
-include_directories(Detours/include $ENV{DXSDK_DIR}Include)
-link_directories(Detours/x86 $ENV{DXSDK_DIR}Lib/x86/)
-file(GLOB ImGui ImGui/*.cpp ImGui/*.h)
-
-add_library(D3D9_HOOK SHARED pch.h dllmain.cpp Hook.h Hook.cpp Drawing.h Drawing.cpp ${ImGui})
-target_link_libraries(D3D9_HOOK detours.lib d3d9.lib d3dx9.lib)
-```
-
-Tested on CLion with MSVC compiler, you can get Visual Studio Build Tools [**here**](https://visualstudio.microsoft.com/fr/downloads/?q=build+tools).
-
 ## :hook: Hooking
 
 You can hook every functions of DirectX 9 by changing the virtual function index (in Hook.cpp) :
