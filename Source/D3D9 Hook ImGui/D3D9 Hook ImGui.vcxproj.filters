@@ -67,16 +67,16 @@
     <ClCompile Include="ImGui\imgui_draw.cpp">
       <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="ImGui\imgui_impl_dx9.cpp">
-      <Filter>Fichiers d%27en-tête\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
-      <Filter>Fichiers d%27en-tête\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="ImGui\imgui_tables.cpp">
       <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\backends\imgui_impl_dx9.cpp">
+      <Filter>Fichiers d%27en-tête\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\backends\imgui_impl_win32.cpp">
       <Filter>Fichiers d%27en-tête\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
