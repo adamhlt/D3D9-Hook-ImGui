@@ -65,22 +65,6 @@ oEndScene = reinterpret_cast<tEndScene>(vtable[D3D9::EndScene]);
 
 All the function indexes are listed [here](docs/Functions.md).
 
-## Project layout
-
-```
-src/
-  dllmain.cpp        entry point
-  Config.h           hotkeys
-  hooks/             Detours wrapper, EndScene / Reset hooks, unload logic
-  d3d9/              dummy device -> IDirect3DDevice9 vtable
-  input/             window procedure subclassing (ImGui input, hotkeys)
-  ui/Menu.cpp        ImGui setup and the menu itself
-external/
-  imgui/             ImGui (submodule)
-  detours/           MS Detours headers and libs
-docs/Functions.md    IDirect3DDevice9 vtable indexes
-```
-
 ## Build
 
 1. Clone with the submodules: `git clone --recurse-submodules https://github.com/adamhlt/D3D9-Hook-ImGui.git` (or `git submodule update --init` in an existing clone).
