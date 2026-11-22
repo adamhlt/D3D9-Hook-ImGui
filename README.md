@@ -33,40 +33,62 @@ This use the [**dummy device technique**](https://guidedhacking.com/threads/get-
 #### Used librairies :
 
 - [MS Detours](https://www.microsoft.com/en-us/research/project/detours/)
-- [DirectX SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
 - [ImGui](https://github.com/ocornut/imgui)
+- Direct3D 9 headers / libs from the Windows SDK (no legacy DirectX SDK needed)
 
 ## :rocket: Getting Started
 
-This project use [MS Detours](https://github.com/microsoft/Detours) library for hooking and obviously DirectX 9 SDK.
+MS Detours is already included in `external/detours`, ImGui is a git submodule :
 
-MS Detours library is already include in the project folder, but if you don't have DirectX SDK you can download it [here](https://www.microsoft.com/en-us/download/details.aspx?id=6812).
+```
+git clone --recurse-submodules https://github.com/adamhlt/D3D9-Hook-ImGui.git
+```
 
-> **Note** <br>
-> Make sure that **DXSDK_DIR** is declared in your environment variables.
-
-To see your environment variables :
-
-> **Settings --> System --> About --> System Advanced Settings --> Environment Variables**
+(or `git submodule update --init` in an existing clone).
 
 ### Visual Studio :
 
-1. Open the solution file (.sln).
-2. Build the project in Release (x86 or x64)
+1. Open `D3D9HookImGui.sln`.
+2. Build the project in Release (x86 or x64). The DLL is written in `bin/<platform>/<configuration>/`.
 
-Every configuration in x86 / x64 (Debug and Realese) are already configured with librairies and includes.
+Every configuration (x86 / x64, Debug and Release) is already configured with libraries and includes.
+
+### Usage :
+
+Inject the DLL in a DirectX 9 process (same architecture).
+
+- `INSERT` : show / hide the menu
+- `END` : unhook and unload the DLL
+
+Keys are configured in `src/Config.h`.
+
+## :file_folder: Project layout
+
+```
+src/
+  dllmain.cpp        entry point
+  Config.h           hotkeys
+  hooks/             Detours wrapper + EndScene / Reset hooks, unload logic
+  d3d9/              dummy device -> IDirect3DDevice9 vtable
+  input/             window procedure subclassing (ImGui input, hotkeys)
+  ui/Menu.cpp        ImGui setup and the menu itself  <-- edit DrawWindow() here
+external/
+  imgui/             submodule
+  detours/           MS Detours headers and libs
+docs/Functions.md    IDirect3DDevice9 vtable indexes
+```
 
 ## :hook: Hooking
 
-You can hook every functions of DirectX 9 by changing the virtual function index (in Hook.cpp) :
+You can hook every function of DirectX 9 by changing the virtual function index (`src/d3d9/VTable.h`, `src/hooks/Hook.cpp`) :
 
-Here I hook EndScene Function.
+Here I hook the EndScene function.
 
 ```
-oEndScene = (tEndScene)d3d9Device[42];
+oEndScene = reinterpret_cast<tEndScene>(vtable[D3D9::EndScene]);
 ```
 
-All functions index of DirectX 9 are [**here**](https://github.com/adamhlt/D3D9-Hook-ImGui/blob/main/Functions.md).
+All functions index of DirectX 9 are [**here**](docs/Functions.md).
 
 ## :test_tube: Example
 
